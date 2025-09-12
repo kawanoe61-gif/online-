@@ -37,11 +37,58 @@
         .flex-container { display: flex; gap: 20px; align-items: flex-start; }
         .flex-item { flex: 1; }
         .voice, .faq-item { border: 1px solid #ddd; padding: 15px; margin-bottom: 15px; border-radius: 5px; }
-        .profile { display: flex; align-items: center; gap: 20px; }
-        .profile img { border-radius: 50%; width: 200px; height: 200px; object-fit: cover; }
+        .profile { 
+            display: flex;
+            flex-direction: column; /* Change to column layout */
+            align-items: center; /* Center items horizontally */
+            gap: 20px; /* Space between image and text block */
+        }
+        .profile img {
+            border-radius: 50%;
+            width: 200px;
+            height: 200px;
+            object-fit: cover;
+            margin-bottom: 10px; /* Add some space below the image */
+        }
+        .profile div { /* Target the div containing the text */
+            text-align: center; /* Center the text within its div */
+        }
+        .profile h3 {
+            text-align: center; /* Ensure the name is centered */
+        }
+        /* Achievements List */
+        .achievements-list {
+            list-style: none;
+            padding-left: 0;
+            margin-top: 15px;
+        }
+        .achievements-list li {
+            position: relative;
+            padding-left: 25px; /* Space for custom bullet */
+            margin-bottom: 8px;
+            font-size: 0.95em;
+            line-height: 1.5;
+            text-align: left; /* Align text to the left within the list item */
+        }
+        .achievements-list li::before {
+            content: "✔"; /* Checkmark icon */
+            color: #4CAF50; /* Green color for checkmark */
+            position: absolute;
+            left: 0;
+            top: 0;
+            font-weight: bold;
+        }
+        .profile p strong { /* Ensure "実績:" is styled */
+            display: block;
+            margin-top: 20px;
+            margin-bottom: 10px;
+            font-size: 1.1em;
+            color: #333;
+            text-align: center; /* Center the "実績:" heading */
+        }
         .urgency { background-color: #ffeb3b; padding: 1em; text-align: center; font-weight: bold; }
         @media (max-width: 600px) {
-            .flex-container, .profile { flex-direction: column; }
+            .flex-container { flex-direction: column; }
         }
         .checklist { list-style: none; padding-left: 0; }
         .checklist li { padding-left: 1.5em; text-indent: -1.5em; margin-bottom: 0.5em; }
@@ -241,7 +288,7 @@
             padding-left: 1.5em;
             text-indent: -1.5em;
         }
-        .features-list li::before {
+                .features-list li::before {
             content: "✔";
             color: #4CAF50;
             padding-right: 0.5em;
@@ -263,6 +310,70 @@
             line-height: 1.7;
             text-align: center;
             margin-bottom: 0;
+        }
+
+        /* Solution Section */
+        .solution-section {
+            background-color: #e8f5e9; /* Light green background */
+            border: 2px solid #81c784; /* Green border */
+            border-radius: 8px;
+            padding: 30px;
+            margin-bottom: 30px;
+            text-align: center;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .solution-section h2 {
+            color: #388e3c; /* Darker green for heading */
+            border-bottom: none; /* Remove border from h2 */
+            margin-top: 0;
+            margin-bottom: 20px;
+        }
+        .solution-section p {
+            font-size: 1.2em; /* Slightly larger font for emphasis */
+            line-height: 1.8;
+            color: #424242;
+            margin-bottom: 0;
+        }
+
+        /* Reasons Section */
+        .reason-item {
+            background-color: #f8fdf8; /* Light green background */
+            border-left: 5px solid #4CAF50; /* Green left border */
+            padding: 20px;
+            margin-bottom: 15px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            position: relative;
+            padding-left: 60px; /* Space for number/icon */
+        }
+        .reason-item::before {
+            content: counter(reason-counter); /* Use CSS counter for numbering */
+            counter-increment: reason-counter;
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            background-color: #4CAF50;
+            color: white;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 1.2em;
+        }
+        .reason-list {
+            list-style: none; /* Remove default list styling */
+            padding-left: 0;
+            counter-reset: reason-counter; /* Initialize counter */
+        }
+        .reason-item strong {
+            color: #333; /* Ensure strong text is visible */
+            font-size: 1.1em; /* Slightly larger for headings */
+            display: block; /* Make strong text a block for better spacing */
+            margin-bottom: 5px;
         }
 
         /* Final CTA */
@@ -353,20 +464,20 @@
         </div>
 
         <!-- お悩み解決できる -->
-        <div class="section">
+        <div class="section solution-section">
             <h2>年齢のせいだと諦めていたその悩み、解決できます。</h2>
-            <p style="text-align: center; font-size: 1.1em;">たくさんの情報に振り回され、鏡を見るたびにため息をつく...。<br>その苦しさの原因は、あなたの努力不足ではありません。<br>人間本来の機能「代謝」の仕組みさえ理解すれば、自分に本当に必要なケアがわかり、体は必ず応えてくれます。<br>もう一度、自分を好きになれる毎日を取り戻しましょう。</p>
+            <p style="font-size: 1.1em;">たくさんの情報に振り回され、鏡を見るたびにため息をつく...。<br>その苦しさの原因は、あなたの努力不足ではありません。<br>人間本来の機能「代謝」の仕組みさえ理解すれば、自分に本当に必要なケアがわかり、体は必ず応えてくれます。<br>もう一度、自分を好きになれる毎日を取り戻しましょう。</p>
         </div>
 
         <!-- どのように解決するのか -->
         <div class="section">
             <h2>なぜ、リスタートダイエットなら結果が出せるのか？</h2>
             <h3>３つの理由</h3>
-            <ol>
-                <li><strong>科学と東洋医学のW分析で、あなたの「痩せない本当の理由」を解明</strong><br>最新の血液検査データと、伝統的な東洋医学の視点を組み合わせ、あなたの体質を徹底的に分析。なぜ今まで痩せられなかったのか、その根本原因を明らかにします。</li>
-                <li><strong>分析結果に基づく完全オーダーメイド指導を、LINEで手厚くサポート</strong><br>あなたの体質に合った食事プランのご提案。忙しい毎日でも無理なく実践できるよう、LINEで専属コーチが毎日寄り添い、丁寧にサポートします。</li>
-                <li><strong>一生使える「選ぶ力」が身につき、もうダイエットに迷わない・リバウンドしない</strong><br>ただ痩せるだけでなく、自分の体に必要なものを「自分で選べる力」を養います。卒業後も、あなたはもう情報に惑わされず、ずっと健康で美しい体を維持できます。</li>
-            </ol>
+            <ul class="reason-list">
+                <li class="reason-item"><strong>科学と東洋医学のW分析で、あなたの「痩せない本当の理由」を解明</strong><br>最新の血液検査データと、伝統的な東洋医学の視点を組み合わせ、あなたの体質を徹底的に分析。なぜ今まで痩せられなかったのか、その根本原因を明らかにします。</li>
+                <li class="reason-item"><strong>分析結果に基づく完全オーダーメイド指導を、LINEで手厚くサポート</strong><br>あなたの体質に合った食事プランのご提案。忙しい毎日でも無理なく実践できるよう、LINEで専属コーチが毎日寄り添い、丁寧にサポートします。</li>
+                <li class="reason-item"><strong>一生使える「選ぶ力」が身につき、もうダイエットに迷わない・リバウンドしない</strong><br>ただ痩せるだけでなく、自分の体に必要なものを「自分で選べる力」を養います。卒業後も、あなたはもう情報に惑わされず、ずっと健康で美しい体を維持できます。</li>
+            </ul>
         </div>
 
         <!-- お客様の声① & ビフォーアフター① -->
@@ -493,7 +604,7 @@
                     <p style="font-weight: bold; margin-top: 20px; line-height: 1.8;">私が目指すのは、一時的な減量ではありません。お客様を「痩せては太る」という苦しいループから完全に解放することです。<br>そのために不可欠なのが、お客様自身の「学ぶ姿勢」。<br>私は、あなたの隣で正しい道を照らし、ゴールまで一緒に走り抜くパートナーです。</p>
                     <p>もう、あなたを一人で悩ませません。私の経験と専門知識を活かし、あなたの「最後のダイエット」を全力でサポートします。</p>
                     <p><strong>実績:</strong></p>
-                    <ul>
+                    <ul class="achievements-list">
                         <li>指導歴9年</li>
                         <li>ボディメイクコンテスト出場経験</li>
                         <li>血液検査数値解析の専門知識</li>
